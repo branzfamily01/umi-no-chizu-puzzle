@@ -1,7 +1,7 @@
-const CACHE='umi-no-chizu-puzzle-v1';
+const CACHE='umi-no-chizu-puzzle-v2';
 const ASSETS=[
   './','./index.html','./styles.css','./app.js','./data/theme.js','./data/geography.js','./manifest.json',
-  './assets/japan-prefectures.png','./assets/sea-hero.png','./assets/icons/icon-192.png','./assets/icons/icon-512.png'
+  './assets/japan-prefectures.svg','./assets/sea-hero-image2.svg','./assets/icons/icon.svg'
 ];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
