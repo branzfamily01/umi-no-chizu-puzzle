@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-title" content="海のちずパズル">
   <meta name="description" content="海の生き物といっしょに、日本の山地・山脈と川の場所をパズルで覚える地理学習アプリ">
   <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon.svg">
   <link rel="stylesheet" href="styles.css">
   <title>海のちずパズル</title>
 </head>
@@ -22,7 +22,7 @@
     </header>
 
     <section class="hero-card">
-      <img src="assets/sea-hero.png" class="hero-art" alt="イルカ、ペンギン、ラッコなど海の生き物">
+      <img src="assets/sea-hero-image2.svg" class="hero-art" alt="イルカ、ペンギン、ラッコなど海の生き物">
       <div class="hero-copy">
         <div class="tiny-kicker">海の生き物といっしょに</div>
         <h1>海の<br><span>ちずパズル</span></h1>
@@ -78,25 +78,12 @@
       <p id="modeIntroText">まず見て覚えて、次にパズルで確かめよう。</p>
     </section>
     <section class="mode-grid">
-      <button class="mode-card learn" data-mode="learn">
-        <span class="mode-emoji">📖</span><b>学習モード</b><small>場所を見ながら覚える</small><em>はじめて</em>
-      </button>
-      <button class="mode-card shape" data-mode="shape">
-        <span class="mode-emoji">🧩</span><b>形パズル</b><small>パーツを地図にはめる</small><em>おすすめ</em>
-      </button>
-      <button class="mode-card label" data-mode="label">
-        <span class="mode-emoji">🏷️</span><b>名前札パズル</b><small>名前を正しい場所へ</small>
-      </button>
-      <button class="mode-card test" data-mode="test">
-        <span class="mode-emoji">🏁</span><b>テスト</b><small>ヒントなしで挑戦</small>
-      </button>
+      <button class="mode-card learn" data-mode="learn"><span class="mode-emoji">📖</span><b>学習モード</b><small>場所を見ながら覚える</small><em>はじめて</em></button>
+      <button class="mode-card shape" data-mode="shape"><span class="mode-emoji">🧩</span><b>形パズル</b><small>パーツを地図にはめる</small><em>おすすめ</em></button>
+      <button class="mode-card label" data-mode="label"><span class="mode-emoji">🏷️</span><b>名前札パズル</b><small>名前を正しい場所へ</small></button>
+      <button class="mode-card test" data-mode="test"><span class="mode-emoji">🏁</span><b>テスト</b><small>ヒントなしで挑戦</small></button>
     </section>
-    <section class="difficulty-row">
-      <span>テストの難しさ</span>
-      <div class="segmented" id="difficultyControl">
-        <button data-level="easy">やさしい</button><button class="active" data-level="normal">ふつう</button><button data-level="hard">むずかしい</button>
-      </div>
-    </section>
+    <section class="difficulty-row"><span>テストの難しさ</span><div class="segmented" id="difficultyControl"><button data-level="easy">やさしい</button><button class="active" data-level="normal">ふつう</button><button data-level="hard">むずかしい</button></div></section>
   </main>
 
   <main id="gameScreen" class="screen game-screen" aria-label="学習・パズル">
@@ -106,65 +93,31 @@
       <div class="score-pill"><span>⭐</span><b id="scoreNow">0</b><small>/<span id="scoreTotal">5</span></small></div>
     </header>
 
-    <section class="prompt-card" id="promptCard">
-      <div class="prompt-main">
-        <small id="promptKicker">ここに置いてね</small>
-        <strong id="promptName">飛騨山脈</strong>
-        <span id="promptKana">ひださんみゃく</span>
-      </div>
-      <button class="speak-button" id="speakBtn" aria-label="読み上げ">🔊</button>
-      <button class="hint-button" id="hintBtn">💡 ヒント</button>
-    </section>
+    <section class="prompt-card" id="promptCard"><div class="prompt-main"><small id="promptKicker">ここに置いてね</small><strong id="promptName">飛騨山脈</strong><span id="promptKana">ひださんみゃく</span></div><button class="speak-button" id="speakBtn" aria-label="読み上げ">🔊</button><button class="hint-button" id="hintBtn">💡 ヒント</button></section>
 
     <section class="map-zone" id="mapZone">
       <div class="map-wrap" id="mapWrap">
-        <img src="assets/japan-prefectures.png" id="japanMap" alt="都道府県境が表示された日本地図" draggable="false">
-        <div id="overlayLayer" class="overlay-layer"></div>
-        <div id="hintPulse" class="hint-pulse" hidden></div>
+        <img src="assets/japan-prefectures.svg" id="japanMap" alt="都道府県境が表示された日本地図" draggable="false">
+        <div id="overlayLayer" class="overlay-layer"></div><div id="hintPulse" class="hint-pulse" hidden></div>
       </div>
       <div class="map-caption">県境を手がかりに、場所を思い出そう</div>
     </section>
 
     <section id="learnPanel" class="learn-panel" hidden>
-      <div class="learn-card">
-        <div><small id="learnRegion">中部</small><strong id="learnName">信濃川</strong><span id="learnKana">しなのがわ</span></div>
-        <button id="learnSpeak" class="round-speak">🔊</button>
-      </div>
+      <div class="learn-card"><div><small id="learnRegion">中部</small><strong id="learnName">信濃川</strong><span id="learnKana">しなのがわ</span></div><button id="learnSpeak" class="round-speak">🔊</button></div>
       <p id="learnNote">長野県では千曲川とよばれ、新潟県へ流れる日本最長の川。</p>
       <div class="learn-nav"><button id="learnPrev">← 前</button><span id="learnIndex">1 / 21</span><button id="learnNext">次 →</button></div>
     </section>
 
-    <section id="puzzleTray" class="puzzle-tray">
-      <div class="tray-label"><span id="trayHelp">このパーツを地図へドラッグ</span><small>指でつかんで動かせるよ</small></div>
-      <div id="pieceHost" class="piece-host"></div>
-      <button id="skipBtn" class="skip-button">あとで</button>
-    </section>
+    <section id="puzzleTray" class="puzzle-tray"><div class="tray-label"><span id="trayHelp">このパーツを地図へドラッグ</span><small>指でつかんで動かせるよ</small></div><div id="pieceHost" class="piece-host"></div><button id="skipBtn" class="skip-button">あとで</button></section>
   </main>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <div id="celebrate" class="celebrate" aria-hidden="true"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div><div id="celebrate" class="celebrate" aria-hidden="true"></div>
 
-  <dialog id="resultDialog" class="modal result-modal">
-    <div class="result-creature">🐬</div>
-    <h2 id="resultTitle">やったね！</h2>
-    <p id="resultText">5問クリア！</p>
-    <div class="result-stars" id="resultStars">⭐⭐⭐</div>
-    <div class="result-stats"><div><small>正解</small><b id="resultCorrect">5</b></div><div><small>貝がら</small><b id="resultShells">+10</b></div></div>
-    <button class="primary-button" id="againBtn">もう一回</button>
-    <button class="text-button" id="homeBtnFromResult">ホームへ</button>
-  </dialog>
+  <dialog id="resultDialog" class="modal result-modal"><div class="result-creature">🐬</div><h2 id="resultTitle">やったね！</h2><p id="resultText">5問クリア！</p><div class="result-stars" id="resultStars">⭐⭐⭐</div><div class="result-stats"><div><small>正解</small><b id="resultCorrect">5</b></div><div><small>貝がら</small><b id="resultShells">+10</b></div></div><button class="primary-button" id="againBtn">もう一回</button><button class="text-button" id="homeBtnFromResult">ホームへ</button></dialog>
 
-  <dialog id="settingsDialog" class="modal settings-modal">
-    <div class="modal-head"><h2>せってい</h2><button id="closeSettings">×</button></div>
-    <label class="setting-row"><span>🔊 効果音</span><input type="checkbox" id="soundToggle" checked></label>
-    <label class="setting-row"><span>🗣️ 読み上げ</span><input type="checkbox" id="voiceToggle" checked></label>
-    <label class="setting-column"><span>音の大きさ</span><input type="range" id="volumeRange" min="0" max="1" step="0.05" value="0.7"></label>
-    <button class="danger-link" id="resetProgress">学習記録をリセット</button>
-    <p class="settings-note">音は最初のタップ後に再生できます。読み上げは端末の日本語音声を使います。</p>
-  </dialog>
+  <dialog id="settingsDialog" class="modal settings-modal"><div class="modal-head"><h2>せってい</h2><button id="closeSettings">×</button></div><label class="setting-row"><span>🔊 効果音</span><input type="checkbox" id="soundToggle" checked></label><label class="setting-row"><span>🗣️ 読み上げ</span><input type="checkbox" id="voiceToggle" checked></label><label class="setting-column"><span>音の大きさ</span><input type="range" id="volumeRange" min="0" max="1" step="0.05" value="0.7"></label><button class="danger-link" id="resetProgress">学習記録をリセット</button><p class="settings-note">音は最初のタップ後に再生できます。読み上げは端末の日本語音声を使います。</p></dialog>
 </div>
-<script src="data/theme.js"></script>
-<script src="data/geography.js"></script>
-<script src="app.js"></script>
+<script src="data/theme.js"></script><script src="data/geography.js"></script><script src="app.js"></script>
 </body>
 </html>
