@@ -7,9 +7,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="海のちずパズル">
-  <meta name="description" content="海の生き物といっしょに、日本の山地・山脈と川の場所をパズルで覚える地理学習アプリ">
+  <meta name="description" content="海の生き物といっしょに、日本の山地・山脈と川を段階的に覚える地理パズル">
   <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="assets/icons/icon.svg">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <title>海のちずパズル</title>
 </head>
@@ -17,45 +17,29 @@
 <div id="app">
   <main id="homeScreen" class="screen active" aria-label="ホーム">
     <header class="home-header">
-      <div class="brand-chip">🐚 中学受験・地理</div>
+      <div class="brand-chip">👚 小5・中学受験 地理</div>
       <button class="icon-button" id="settingsBtn" aria-label="設定">⚙️</button>
     </header>
 
     <section class="hero-card">
-      <img src="assets/sea-hero-image2.svg" class="hero-art" alt="イルカ、ペンギン、ラッコなど海の生き物">
+      <img src="assets/sea-hero.svg" class="hero-art" alt="海の生き物たち">
       <div class="hero-copy">
         <div class="tiny-kicker">海の生き物といっしょに</div>
         <h1>海の<br><span>ちずパズル</span></h1>
-        <p>日本の山地と川を<br>「カチッ！」とはめて覚えよう</p>
+        <p>ヒントを少しずつ減らして<br>最後は白地図だけで置けるようになろう</p>
       </div>
-      <div class="bubble b1"></div><div class="bubble b2"></div><div class="bubble b3"></div>
     </section>
 
-    <section class="today-card" id="todayCard">
+    <section class="today-card">
       <div class="today-icon">⭐</div>
-      <div>
-        <small>きょうのおすすめ</small>
-        <strong id="todayText">まずは3問だけやってみよう！</strong>
-      </div>
-      <div class="shell-count"><span>🐚</span><b id="shellCount">0</b></div>
+      <div><small>きょうのおすすめ</small><strong id="todayText">まずは3問だけ覚えよう！</strong></div>
+      <div class="shell-count"><span>👚</span><b id="shellCount">0</b></div>
     </section>
 
     <section class="main-actions">
-      <button class="big-action mountain" data-category="mountains">
-        <span class="action-icon">⛰️</span>
-        <span><b>山地・山脈</b><small>山のつらなりを覚える</small></span>
-        <span class="chev">›</span>
-      </button>
-      <button class="big-action river" data-category="rivers">
-        <span class="action-icon">💧</span>
-        <span><b>川</b><small>流れる場所を覚える</small></span>
-        <span class="chev">›</span>
-      </button>
-      <button class="big-action review" id="reviewBtn">
-        <span class="action-icon">⭐</span>
-        <span><b>にがて復習</b><small id="reviewSub">まちがえた問題をもう一度</small></span>
-        <span class="chev">›</span>
-      </button>
+      <button class="big-action mountain" data-category="mountains"><span class="action-icon">⛰️</span><span><b>山地・山脈</b><small>固有の形と場所で覚える</small></span><span class="chev">›</span></button>
+      <button class="big-action river" data-category="rivers"><span class="action-icon">💧</span><span><b>川</b><small>流れ方まで見て覚える</small></span><span class="chev">›</span></button>
+      <button class="big-action review" id="reviewBtn"><span class="action-icon">🔁</span><span><b>にがて復習</b><small id="reviewSub">まちがえた問題をもう一度</small></span><span class="chev">›</span></button>
     </section>
 
     <section class="progress-card">
@@ -63,61 +47,95 @@
       <div class="progress-bar"><i id="progressFill"></i></div>
       <div class="creature-row" aria-hidden="true"><span>🐬</span><span>🪼</span><span>🐧</span><span>🦦</span><span>🐢</span></div>
     </section>
-
-    <footer class="home-footer">県境つき白地図で、位置と名前をいっしょに覚えよう</footer>
   </main>
 
-  <main id="modeScreen" class="screen" aria-label="モード選択">
+  <main id="modeScreen" class="screen" aria-label="学び方を選ぶ">
     <header class="topbar">
       <button class="back-button" data-back="home">‹</button>
       <div><small id="modeCategorySmall">山地・山脈</small><h2>どうやって覚える？</h2></div>
       <div class="shell-count compact"><span>🐚</span><b id="shellCount2">0</b></div>
     </header>
-    <section class="mode-intro">
-      <div class="mode-mascot">🐬</div>
-      <p id="modeIntroText">まず見て覚えて、次にパズルで確かめよう。</p>
+    <section class="learning-ladder">
+      <b>覚えるほどヒントが消えるよ</b>
+      <div class="ladder"><span>①形が見える</span><i>→</i><span>②うっすら</span><i>→</i><span>③地域だけ</span><i>→</i><span>④県境だけ</span><i>→</i><span>⑤完全テスト</span></div>
     </section>
     <section class="mode-grid">
-      <button class="mode-card learn" data-mode="learn"><span class="mode-emoji">📖</span><b>学習モード</b><small>場所を見ながら覚える</small><em>はじめて</em></button>
-      <button class="mode-card shape" data-mode="shape"><span class="mode-emoji">🧩</span><b>形パズル</b><small>パーツを地図にはめる</small><em>おすすめ</em></button>
-      <button class="mode-card label" data-mode="label"><span class="mode-emoji">🏷️</span><b>名前札パズル</b><small>名前を正しい場所へ</small></button>
-      <button class="mode-card test" data-mode="test"><span class="mode-emoji">🏁</span><b>テスト</b><small>ヒントなしで挑戦</small></button>
+      <button class="mode-card learn" data-mode="learn"><span class="mode-emoji">🌱</span><b>おぼえる</b><small>今の習熟度に合わせてヒントつき</small><em>おすすめ</em></button>
+      <button class="mode-card challenge" data-mode="challenge"><span class="mode-emoji">⭐</span><b>ちょうせん</b><small>ヒントを減らして思い出す</small></button>
+      <button class="mode-card master" data-mode="master"><span class="mode-emoji">🏆</span><b>マスターテスト</b><small>正解位置は一切表示しない</small></button>
+      <button class="mode-card read" data-mode="read"><span class="mode-emoji">🧠</span><b>よみとく</b><small>特徴・歴史・典型問題から名前を選ぶ</small><em>入試向け</em></button>
     </section>
-    <section class="difficulty-row"><span>テストの難しさ</span><div class="segmented" id="difficultyControl"><button data-level="easy">やさしい</button><button class="active" data-level="normal">ふつう</button><button data-level="hard">むずかしい</button></div></section>
+    <section class="mode-note">設定で難易度を選ぶのではなく、<b>項目ごとの習熟度</b>でヒントが自動調整されます。</section>
   </main>
 
-  <main id="gameScreen" class="screen game-screen" aria-label="学習・パズル">
+  <main id="gameScreen" class="screen game-screen" aria-label="地理パズル">
     <header class="game-topbar">
       <button class="back-button" data-back="mode">‹</button>
-      <div class="game-title"><small id="gameModeLabel">形パズル</small><b id="gameCategoryLabel">山地・山脈</b></div>
+      <div class="game-title"><small id="gameModeLabel">おぼえる</small><b id="gameCategoryLabel">山地・山脈</b></div>
       <div class="score-pill"><span>⭐</span><b id="scoreNow">0</b><small>/<span id="scoreTotal">5</span></small></div>
     </header>
 
-    <section class="prompt-card" id="promptCard"><div class="prompt-main"><small id="promptKicker">ここに置いてね</small><strong id="promptName">飛騨山脈</strong><span id="promptKana">ひださんみゃく</span></div><button class="speak-button" id="speakBtn" aria-label="読み上げ">🔊</button><button class="hint-button" id="hintBtn">💡 ヒント</button></section>
+    <section class="prompt-card" id="promptCard">
+      <div class="prompt-main">
+        <div class="prompt-row"><small id="promptKicker">形を見ながら置こう</small><span class="mastery-pill" id="masteryPill">★☆☆☆☆</span></div>
+        <strong id="promptName">飛騨山脈</strong>
+        <span id="promptKana">ひださんみゃく</span>
+        <p id="scaffoldText">まずは正しい形に重ねて覚えよう。</p>
+      </div>
+      <button class="speak-button" id="speakBtn" aria-label="読み上げ">🔊</button>
+      <button class="hint-button" id="hintBtn">💡 ヒントを1段</button>
+    </section>
+
+    <section id="readPanel" class="read-panel" hidden>
+      <div class="read-head"><span>🧠</span><div><small>特徴を読んで考えよう</small><b>これはどれ？</b></div></div>
+      <div id="readClues" class="read-clues"></div>
+      <div id="readChoices" class="read-choices"></div>
+      <div class="exam-tip"><b>入試では</b><span id="examTip"></span></div>
+    </section>
 
     <section class="map-zone" id="mapZone">
       <div class="map-wrap" id="mapWrap">
-        <img src="assets/japan-prefectures.svg" id="japanMap" alt="都道府県境が表示された日本地図" draggable="false">
-        <div id="overlayLayer" class="overlay-layer"></div><div id="hintPulse" class="hint-pulse" hidden></div>
+        <img src="assets/japan-prefectures.svg" id="japanMap" alt="47都道府県の県境が表示された日本地図" draggable="false">
+        <svg id="overlaySvg" class="overlay-svg" viewBox="0 0 570 755" aria-hidden="true"></svg>
       </div>
-      <div class="map-caption">県境を手がかりに、場所を思い出そう</div>
+      <div class="map-caption" id="mapCaption">県境を手がかりに考えよう</div>
     </section>
 
-    <section id="learnPanel" class="learn-panel" hidden>
-      <div class="learn-card"><div><small id="learnRegion">中部</small><strong id="learnName">信濃川</strong><span id="learnKana">しなのがわ</span></div><button id="learnSpeak" class="round-speak">🔊</button></div>
-      <p id="learnNote">長野県では千曲川とよばれ、新潟県へ流れる日本最長の川。</p>
-      <div class="learn-nav"><button id="learnPrev">← 前</button><span id="learnIndex">1 / 21</span><button id="learnNext">次 →</button></div>
+    <section id="knowledgeCard" class="knowledge-card">
+      <div class="knowledge-title"><span>📚</span><b>覚えるポイント</b></div>
+      <ul id="factList"></ul>
+      <div id="historyBox" class="history-box" hidden><b>🏯 歴史・背景</b><span id="historyText"></span></div>
+      <div class="exam-box"><b>🎯 典型的な問われ方</b><span id="examText"></span></div>
     </section>
 
-    <section id="puzzleTray" class="puzzle-tray"><div class="tray-label"><span id="trayHelp">このパーツを地図へドラッグ</span><small>指でつかんで動かせるよ</small></div><div id="pieceHost" class="piece-host"></div><button id="skipBtn" class="skip-button">あとで</button></section>
+    <section id="puzzleTray" class="puzzle-tray">
+      <div class="tray-label"><span id="trayHelp">この形を地図へ</span><small>ドラッグ、またはパーツ→地図の順にタップ</small></div>
+      <div id="pieceHost" class="piece-host"></div>
+      <button id="skipBtn" class="skip-button">あとでえ�/button>
+    </section>
   </main>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div><div id="celebrate" class="celebrate" aria-hidden="true"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="celebrate" class="celebrate" aria-hidden="true"></div>
 
-  <dialog id="resultDialog" class="modal result-modal"><div class="result-creature">🐬</div><h2 id="resultTitle">やったね！</h2><p id="resultText">5問クリア！</p><div class="result-stars" id="resultStars">⭐⭐⭐</div><div class="result-stats"><div><small>正解</small><b id="resultCorrect">5</b></div><div><small>貝がら</small><b id="resultShells">+10</b></div></div><button class="primary-button" id="againBtn">もう一回</button><button class="text-button" id="homeBtnFromResult">ホームへ</button></dialog>
+  <dialog id="resultDialog" class="modal result-modal">
+    <div class="result-creature">🐬</div><h2 id="resultTitle">やったね！</h2><p id="resultText">5問クリア！</p>
+    <div class="result-stars" id="resultStars">⭐⭐⭐</div>
+    <div class="result-stats"><div><small>正解</small><b id="resultCorrect">5</b></div><div><small>貝がら</small><b id="resultShells">+10</b></div></div>
+    <button class="primary-button" id="againBtn">もう一回</button><button class="text-button" id="homeBtnFromResult">ホームへ</button>
+  </dialog>
 
-  <dialog id="settingsDialog" class="modal settings-modal"><div class="modal-head"><h2>せってい</h2><button id="closeSettings">×</button></div><label class="setting-row"><span>🔊 効果音</span><input type="checkbox" id="soundToggle" checked></label><label class="setting-row"><span>🗣️ 読み上げ</span><input type="checkbox" id="voiceToggle" checked></label><label class="setting-column"><span>音の大きさ</span><input type="range" id="volumeRange" min="0" max="1" step="0.05" value="0.7"></label><button class="danger-link" id="resetProgress">学習記録をリセット</button><p class="settings-note">音は最初のタップ後に再生できます。読み上げは端末の日本語音声を使います。</p></dialog>
+  <dialog id="settingsDialog" class="modal settings-modal">
+    <div class="modal-head"><h2>せってい</h2><button id="closeSettings">×</button></div>
+    <label class="setting-row"><span>🔊 効果音</span><input type="checkbox" id="soundToggle" checked></label>
+    <label class="setting-row"><span>🗣️ 読み上げ</span><input type="checkbox" id="voiceToggle" checked></label>
+    <label class="setting-column"><span>音の大きさ</span><input type="range" id="volumeRange" min="0" max="1" step="0.05" value="0.7"></label>
+    <button class="danger-link" id="resetProgress">学習記録をリセット</button>
+    <p class="settings-note">正解位置は「おぼえる」の初期段階だけ表示されます。覚えるほど自動で消えます。</p>
+  </dialog>
 </div>
-<script src="data/theme.js"></script><script src="data/geography.js"></script><script src="app.js"></script>
+<script src="data/theme.js"></script>
+<script src="data/geography.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

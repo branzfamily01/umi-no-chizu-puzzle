@@ -1,14 +1,11 @@
 {
-  "name": "海のちずパズル",
-  "short_name": "ちずパズル",
-  "description": "海の生き物といっしょに日本の山地・山脈と川をパズルで覚える地理学習アプリ",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#dff7fb",
-  "theme_color": "#54c8e8",
-  "orientation": "any",
-  "icons": [
-    {"src":"assets/icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
-  ]
+  "name":"海のちずパズル",
+  "short_name":"ちずパズル",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#e8faff",
+  "theme_color":"#54c8e8",
+  "description":"海の生き物といっしょに、日本の山地・山脈と川を段階的に覚える地理パズル",
+  "icons":[{"src":"assets/icons/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }

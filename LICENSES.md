@@ -2,18 +2,20 @@
 
 ## 日本地図
 
-`assets/japan-prefectures.png` は Wikimedia Commons の **Regions and Prefectures of Japan - blank.svg** を表示用に淡色化したものです。
+`assets/japan-prefectures.svg` は Wikimedia Commons の **Regions and Prefectures of Japan - blank.svg** を学習画面向けに淡色化したものです。
 
 - Author: Bigmorr
 - Source: Wikimedia Commons
 - Original license: Public Domain（著作権者によるパブリックドメイン提供）
 - Original file page: `File:Regions and Prefectures of Japan - blank.svg`
 
-地図の都道府県境は学習上の位置関係を示すために使用しています。
+## 山地・河川の学習線
+
+`data/geography.js` 内の山地・河川パスは、ユーザー提供教材の白地図と公的地理情報を参照し、このアプリ用に単純化して独自作成した学習用表現です。教材画像そのものをアプリ内に複製していません。
 
 ## 海の生き物ビジュアル
 
-`assets/sea-hero.png` とアプリアイコンは、このアプリ用に生成・加工したオリジナルAIビジュアルです。既存キャラクターやブランドロゴは使用していません。
+`assets/sea-hero.svg` とアプリアイコンは、このアプリ用のオリジナルAIビジュアル／独自SVGです。既存キャラクターやブランドロゴは使用していません。
 
 ## アプリコード
 
