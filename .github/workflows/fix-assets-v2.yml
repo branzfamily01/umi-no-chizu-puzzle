@@ -1,0 +1,50 @@
+name: Fix exact v2 assets
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".rebuild2/**"
+      - ".github/workflows/fix-assets-v2.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Restore exact UTF-8 and map assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d .rebuild2/index.html.gz.b64 | gunzip > index.html
+          base64 -d .rebuild2/map.svg.gz.b64 | gunzip > assets/japan-prefectures.svg
+          base64 -d .rebuild2/icon.svg.gz.b64 | gunzip > assets/icons/icon.svg
+          base64 -d .rebuild2/sw.js.gz.b64 | gunzip > sw.js
+          base64 -d .rebuild2/manifest.json.gz.b64 | gunzip > manifest.json
+          test "$(git hash-object index.html)" = "7a7638d4e7ba5bc7bf1199679fd40a94c43fbab9"
+          test "$(git hash-object assets/japan-prefectures.svg)" = "e2f0417d1e6f76a651500bac0eb5099804575cd8"
+          test "$(git hash-object assets/icons/icon.svg)" = "68302d2843ec0853662ab76b360d87e9e8b047c3"
+          test "$(git hash-object sw.js)" = "fd4e3c9d92901b619f780d5e033c867631c13d62"
+          test "$(git hash-object manifest.json)" = "19494352f48d5d5d3d29f4ad97e2ca5ae707c21b"
+          grep -q '海のちずパズル' index.html
+          grep -q 'viewBox="0 0 570 755"' assets/japan-prefectures.svg
+          node --check app.js
+          node --check data/geography.js
+          rm -rf .rebuild2
+          rm -f .github/workflows/fix-assets-v2.yml
+      - name: Commit verified files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix complete Japan map and UTF-8 assets"
+          git push origin main
